@@ -145,5 +145,38 @@ function getDailyExerciseCals($username, $date){
     return $ex_cals;
 }
 
+function getFoodDictionary($username){
+    $conn = OpenConn();
+    $query = "SELECT * FROM foods WHERE username = '".$username."'";
+    $result = $conn->query($query);
+
+    $i = 0;
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $food_name =  $row["food_name"];
+            $size =  $row["size"];
+            $calories =  $row["calories"];
+            $descr =  $row["descriptiom"];
+
+                echo '<tr>
+                <td>'.$food_name.'</td> 
+                <td>'.$size.'</td> 
+                <td>'.$calories.'</td> 
+                <td>'.$descr.'</td> 
+                <td><button>Apply</button></td> 
+                <td><button>Edit</button></td>
+            </tr>';
+
+        }
+    }
+}
+
+function addFood($username, $food_name, $size, $calories, $description){
+    $conn = OpenConn();
+    $query = "INSERT INTO foods (username, food_name, size, calories, descriptiom) VALUES ('".$username."','".$food_name."', '".$size."', '".$calories."', '".$description."')";
+    $result = $conn->query($query);
+
+    return $result;
+}
 
 ?>

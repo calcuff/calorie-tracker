@@ -104,3 +104,63 @@ body {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+.title{
+  margin: 20px; 
+  padding-left:16px; 
+  font-size:24px; 
+}
+
+.search input[type=text]{
+    float: right;
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
+}
+
+.search-box{
+    padding: 13px;
+    border: #CCC 1px solid;
+    border-radius: 4px;
+    width: 50%;
+}
+
+
+.container .btn {
+  /* position: absolute; */
+  /* top: 50%;
+  left: 50%; 
+  /* transform: translate(-50%, -50%); */
+  /* -ms-transform: translate(-50%, -50%); */
+  background-color: #4ed877;
+  color: black;
+  font-size: 16px;
+  padding: 16px 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  margin-left: 150px;
+}
+
+.container .btn:hover {
+  background-color: black;
+  color: white;
+}
+.table1 {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+}
+
+.table1 td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.table1 tr:nth-child(even) {
+  background-color: #dddddd;
+}

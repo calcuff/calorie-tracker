@@ -27,9 +27,11 @@ if (! empty($_POST["caloriesadded"]) && ! empty($_SESSION['username']) && $_SESS
         $retval = insertCals($username, $calories, $date );
 
         if(! empty($retval)){
-            echo "Added calories";
+            // echo "<script type='text/javascript'>alert('Added calories!');</script>";
+            echo 'added calories';
         }
     }
+    header("Location: index.php");
 
 }
 
@@ -48,9 +50,11 @@ if (! empty($_POST["exerciseadded"])  && ! empty($_SESSION['username']) && $_SES
         $retval = insertExerciseCals($username, $calories, $date );
 
         if(! empty($retval)){
-            echo "Added exercise";
+            // echo "<script type='text/javascript'>alert('Added exercise calories!');</script>";
+            echo 'added exercise';
         }
     }
+    header("Location: index.php");
 }
 ?>
 

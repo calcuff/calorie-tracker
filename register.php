@@ -40,10 +40,11 @@ if (! empty($_POST["register-user"])) {
 <link href="./css/register.css" rel="stylesheet" type="text/css" />
 <link href="./css/style.css" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
- <!-- BEGIN navbar.php INCLUDE -->
- <?php include "./navbar.php"; ?>
-<!-- END navbar.php INCLUDE -->
+    <!-- BEGIN navbar.php INCLUDE -->
+    <?php include "./navbar.php"; ?>
+    <!-- END navbar.php INCLUDE -->
 
     <form name="frmRegistration" method="post" action="">
         <div class="demo-table">

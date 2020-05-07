@@ -150,30 +150,61 @@ function getFoodDictionary($username){
     $query = "SELECT * FROM foods WHERE username = '".$username."'";
     $result = $conn->query($query);
 
-    $i = 0;
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            $food_name =  $row["food_name"];
+            $id = $row["id"];
+            $foodname =  $row["food_name"];
             $size =  $row["size"];
             $calories =  $row["calories"];
             $descr =  $row["descriptiom"];
 
-                echo '<tr>
-                <td>'.$food_name.'</td> 
+
+                echo '
+                 <form name="frmDict" method="post" action="">
+                <tr id="'.$foodname.'">
+                <td><div contenteditable>'.$id.'</div></td>
+                <td>'.$foodname.'</td> 
                 <td>'.$size.'</td> 
-                <td>'.$calories.'</td> 
                 <td>'.$descr.'</td> 
-                <td><button>Apply</button></td> 
-                <td><button>Edit</button></td>
-            </tr>';
+                <td><input class="apply-btn" type="submit" name="apply-food" value="'.$calories.'">Apply Today</input></td> 
+                <td><input class="apply-btn" type="submit" name="delete-food" value="'.$id.'">Delete</input></td> 
+                </tr>
+                </form>';
 
         }
     }
 }
 
+// TODO
+// make edit food a post and set td vlaues as $_POST[]
+// <td><button class="apply-btn" onclick="applyFood('.$calories.')" name="apply-food">Apply Today</button></td> 
+// <td><button class="apply-btn" onclick="editFood('.$id.')" name="edit-food">Edit</button></td>
+//<td><input class="apply-btn" type="submit" name="edit-food" value="Edit"/></td>
+//  <td><button class="apply-btn" onclick="editFood('.$id.','.$calories.', food)" name="edit-food">Edit</button></td>
+
+// $stuff = 'hi';
+// $_GLOBALS[$id] = $foodname;
+// echo $_POST[$id];
+// $foodfmt = json_encode($foodname);
+// echo $foodfmt;
+// $_POST["calories"] = $calories;
+// $_POST[$id]["foodname"] = $foodname;
+
+// <script>
+// var food = '. $foodfmt .';
+// </script>  
+
 function addFood($username, $food_name, $size, $calories, $description){
     $conn = OpenConn();
     $query = "INSERT INTO foods (username, food_name, size, calories, descriptiom) VALUES ('".$username."','".$food_name."', '".$size."', '".$calories."', '".$description."')";
+    $result = $conn->query($query);
+
+    return $result;
+}
+
+function deleteFood($username, $id){
+    $conn = OpenConn();
+    $query = "DELETE FROM foods WHERE username = '".$username."' AND id = '".$id."'";
     $result = $conn->query($query);
 
     return $result;

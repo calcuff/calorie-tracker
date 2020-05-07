@@ -16,6 +16,12 @@ if (! empty($_POST["foodsearched"]) && ! empty($_SESSION['username']) && $_SESSI
     $username = $_SESSION['username'];
     $foodName = $_POST['foodSearchInput'];
     echo $foodName;
+
+    echo '
+    <script>
+    document.getElementById("'.$foodName.'").style.fontSize = "larger";
+    </script>
+    ';  
     // $date = date("m/d/Y");
 
     // // validate integer
@@ -45,6 +51,43 @@ if(! empty($_POST["add-food"])){
             echo "Added food";
         }
         header("Location: food_dict.php");
+}
+
+
+if (! empty($_POST["apply-food"]) && ! empty($_SESSION['username']) && $_SESSION['loggedin']==true) {
+    $username = $_SESSION['username'];
+    $calories = $_POST['apply-food'];
+    $date = date("m/d/Y");
+
+    // validate integer
+    $errorMessage = validateNumber($_POST['apply-food']);
+    
+    // if no error
+    if (empty($errorMessage)) {
+        // add the calories to DB
+        $retval = insertCals($username, $calories, $date );
+
+        if(! empty($retval)){
+            echo 'added calories';
+        }
+    }
+    header("Location: food_dict.php");
+
+}
+
+if (! empty($_POST["delete-food"]) && ! empty($_SESSION['username']) && $_SESSION['loggedin']==true) {
+    $username = $_SESSION['username'];
+    $id = $_POST['delete-food'];
+
+    $retval = deleteFood($username, $id);
+
+    // if no error
+    if(! empty($retval)){
+        echo 'deleted food';
+    }
+
+    header("Location: food_dict.php");
+
 }
 ?>
 
@@ -141,6 +184,37 @@ if(! empty($_POST["add-food"])){
             <button type="button" class="btn cancel" onclick="closeForm()" name="add-food">Cancel</button>
         </form>
     </div>
+
+    <div class="form-popup" id="editEntry">
+        <form name="frmEditFood" method="post" action="" class="form-container">
+            <h1>Edit Food</h1>
+
+            <label for="foodname"><b>Food</b></label>
+            <input type="text" placeholder="Enter food name" name="foodname" required
+            value="<?php if(isset($_POST['foodname'])) echo $_POST['foodname']; ?>">
+
+            <label for="size"><b>Serving Size</b></label>
+            <input type="text" placeholder="Enter serving size" name="size" required
+            value="<?php if(isset($_POST['size'])) echo $_POST['size']; ?>">
+
+            <label for="calories"><b>Calories</b></label>
+            <input type="number" placeholder="Enter calories" name="calories" required
+            value="<?php if(isset($_POST['calories'])) echo $_POST['calories']; ?>">
+             
+            <br><br/>
+            <label for="description"><b>Description</b></label>
+            <input type="text" placeholder="Enter brief description" name="description"
+            value="<?php if(isset($_POST['description'])) echo $_POST['description']; ?>">
+
+            <div>
+                <input type="submit"
+                    name="add-food" value="Add"
+                    class="btnRegister">
+            </div>
+            <br/>
+            <button type="button" class="btn cancel" onclick="closeForm()" name="add-food">Cancel</button>
+        </form>
+    </div>
     
     <table >
         <tr>
@@ -171,16 +245,17 @@ if(! empty($_POST["add-food"])){
 
     <table class="table1">
         <tr>
+            <th>ID</th>
             <th>Food</th>
             <th>Serving size</th>
-            <th>Calories</th>
             <th>Description</th>
-            <th>Apply</th>
+            <th>Calories</th>
             <th>Edit</th>
         </tr>
         <?php getFoodDictionary($_SESSION['username']); ?>
     </table>
-    <script>
+
+<script>
 
 function openForm() {
   document.getElementById("myForm").style.display = "block";
@@ -188,6 +263,11 @@ function openForm() {
 
 function closeForm() {
   document.getElementById("myForm").style.display = "none";
+}
+
+function editFood($id, $cals, $size){
+    alert($size);
+    alert($id+ $cals);
 }
 </script>
 

@@ -19,7 +19,7 @@ if (! empty($_POST["foodsearched"]) && ! empty($_SESSION['username']) && $_SESSI
 
     echo '
     <script>
-    document.getElementById("'.$foodName.'").style.fontSize = "larger";
+    document.getElementById("'.$foodName.'").style.color = "blue";
     </script>
     ';  
     // $date = date("m/d/Y");
@@ -114,15 +114,19 @@ if (! empty($_POST["delete-food"]) && ! empty($_SESSION['username']) && $_SESSIO
 
 
 </head>
-<body>
+<body style="background-image: url('../img/fruits.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: 0% 0%;">
+
     <!-- BEGIN navabr.php INCLUDE -->
     <?php include "./navbar.php"; ?>
     <!-- END navbar.php INCLUDE -->
 
-    <div class="title" style="border-style: groove;">
+    <div class="title" style="border-style: groove; background-color:white; opacity:0.8;">
         <h2 >Calories remaining</h2>
         <table>
-            <tr style="font-size: 24px;">
+            <tr style="font-size: 30px;">
                 <td  style="padding-left:100px; width:75px;">
                     <p id="total">2000</p>
                 </td>
@@ -151,7 +155,7 @@ if (! empty($_POST["delete-food"]) && ! empty($_SESSION['username']) && $_SESSIO
         </table>
     </div>
     
-    <div class="title" style="color: blue" >
+    <div class="title" style="background-color:white; opacity:0.6; color: blue; width: 200px" >
     <h2 >My Foods</h2></div>
 
     <div class="form-popup" id="myForm">
@@ -219,31 +223,18 @@ if (! empty($_POST["delete-food"]) && ! empty($_SESSION['username']) && $_SESSIO
     <table >
         <tr>
             <td>
-                <form name="frmFoodSearch" method="post" action="">
-                    <div class="demo-table" style="width:500px; margin-left: 100px;">
-                        <div class="form-head">Search For Existing Food</div>
-                        <div class="field-column">
-                            <input type="text" class="search-box"
-                                name="foodSearchInput"
-                                value="<?php if(isset($_POST['foodSearchInput'])) echo $_POST['foodSearchInput']; ?>">
-                            <input type="submit"
-                                style="width: 85px;"  
-                                name="foodsearched" 
-                                value="Search"
-                                class="btnRegister">
-                        </div>
-                    </div>
-                </form>
+            <input type="text" class="search-box" id="searchInput" onkeyup="search()" placeholder="Search for food.." title="Type in a name">
             </td>
             <td>
-                <div class="container" style="margin-left:50px">
+                <div class="container" style="margin-left:150px">
                     <button class="open-button" onclick="openForm()">ADD NEW FOOD</button>
                 </div>
             </td>
         </tr>
     </table>
+    <br><br/>
 
-    <table class="table1">
+    <table class="table1" id="foodTable">
         <tr>
             <th>ID</th>
             <th>Food</th>
@@ -254,6 +245,7 @@ if (! empty($_POST["delete-food"]) && ! empty($_SESSION['username']) && $_SESSIO
         </tr>
         <?php getFoodDictionary($_SESSION['username']); ?>
     </table>
+    <br><br/><br><br/>
 
 <script>
 
@@ -268,6 +260,25 @@ function closeForm() {
 function editFood($id, $cals, $size){
     alert($size);
     alert($id+ $cals);
+}
+
+function search() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("searchInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("foodTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
 }
 </script>
 

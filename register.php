@@ -41,7 +41,9 @@ if (! empty($_POST["register-user"])) {
 <link href="./css/style.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body>
+<body style="background-image: url('../img/veggies.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% ;">
     <!-- BEGIN navbar.php INCLUDE -->
     <?php include "./navbar.php"; ?>
     <!-- END navbar.php INCLUDE -->

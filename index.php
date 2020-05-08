@@ -81,19 +81,16 @@ if (! empty($_POST["exerciseadded"])  && ! empty($_SESSION['username']) && $_SES
     </script>
 
     </head>
-<body>
+<body style="background-image: url('../img/veggies.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% ;">
     <!-- BEGIN navbar.php INCLUDE -->
     <?php include "./navbar.php"; ?>
     <!-- END navbar.php INCLUDE -->
+    
+    <br><br/>
 
-    <div style="margin: 20px; padding-left:16px; background-color:#adaeb3; color:white">
-        <h2>Be your best self today</h2>
-        <a href="login.php">Login</a> or 
-        <a href="register.php">Signup</a> to start tracking calories Today!
-        <p id="content">Some content..</p>
-    </div>
-
-    <div style="margin: 20px; padding-left:16px; font-size:24px; border-style: groove;">
+    <div style="margin: 20px; padding-left:16px; font-size:24px; border-style: groove; background-color:white; opacity:0.6;">
     <h2>
         <?php
         if(! empty($_SESSION['username']) && $_SESSION['loggedin']==true){
@@ -101,11 +98,18 @@ if (! empty($_POST["exerciseadded"])  && ! empty($_SESSION['username']) && $_SES
             echo $_SESSION['username'];
             
         }
+        else{
+            echo '
+                <h2>Be your best self today</h2>
+                <a href="login.php">Login</a> or 
+                <a href="register.php">Signup</a> to start tracking calories Today!
+                ';
+        }
     ?>
     </h2>
         <h2 >Calories remaining</h2>
         <table>
-            <tr style="font-size: 24px;">
+            <tr style="font-size: 30px;">
                 <td  style="padding-left:100px; width:75px;">
                     <p id="total">2000</p>
                 </td>
@@ -134,6 +138,7 @@ if (! empty($_POST["exerciseadded"])  && ! empty($_SESSION['username']) && $_SES
         </table>
     </div>
 
+    <br><br/>
     <form name="frmCalories" method="post" action="">
     <div class="demo-table" style="width:500px">
         <div class="form-head">Add food</div>
@@ -150,7 +155,7 @@ if (! empty($_POST["exerciseadded"])  && ! empty($_SESSION['username']) && $_SES
         <?php
         }
     ?>
-
+        
         <div class="field-column">
             <label>Add Food</label>
                 <div>
@@ -167,7 +172,7 @@ if (! empty($_POST["exerciseadded"])  && ! empty($_SESSION['username']) && $_SES
     </div>
     </form>
 
-
+    <br><br/>
     <form name="frmExercise" method="post" action="">
     <div class="demo-table" style="width:500px">
         <div class="form-head">Add exercise</div>
@@ -186,6 +191,8 @@ if (! empty($_POST["exerciseadded"])  && ! empty($_SESSION['username']) && $_SES
         </div>
     </div>
     </form>
+
+    <br><br/><br><br/>
 
 </body>
 </html>

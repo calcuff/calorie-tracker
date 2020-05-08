@@ -160,17 +160,17 @@ function getFoodDictionary($username){
 
 
                 echo '
-                 <form name="frmDict" method="post" action="">
                 <tr id="'.$foodname.'">
+                <form class="table1" name="frmDict" method="post" action="">
                 <td><div contenteditable>'.$id.'</div></td>
-                <td>'.$foodname.'</td> 
+                <td >'.$foodname.'</td> 
                 <td>'.$size.'</td> 
                 <td>'.$descr.'</td> 
                 <td><input class="apply-btn" type="submit" name="apply-food" value="'.$calories.'">Apply Today</input></td> 
                 <td><input class="apply-btn" type="submit" name="delete-food" value="'.$id.'">Delete</input></td> 
-                </tr>
-                </form>';
-
+                </form>
+                </tr>'
+               ;
         }
     }
 }

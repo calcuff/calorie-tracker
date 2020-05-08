@@ -29,7 +29,9 @@ if (! empty($_POST["login-user"])) {
     <link rel="stylesheet" type="text/css" href="./css/register.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
-<body>
+<body style="background-image: url('../img/veggies.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% ;">
     <!-- BEGIN navbar.php INCLUDE -->
     <?php include "./navbar.php"; ?>
     <!-- END navbar.php INCLUDE -->

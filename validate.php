@@ -175,25 +175,6 @@ function getFoodDictionary($username){
     }
 }
 
-// TODO
-// make edit food a post and set td vlaues as $_POST[]
-// <td><button class="apply-btn" onclick="applyFood('.$calories.')" name="apply-food">Apply Today</button></td> 
-// <td><button class="apply-btn" onclick="editFood('.$id.')" name="edit-food">Edit</button></td>
-//<td><input class="apply-btn" type="submit" name="edit-food" value="Edit"/></td>
-//  <td><button class="apply-btn" onclick="editFood('.$id.','.$calories.', food)" name="edit-food">Edit</button></td>
-
-// $stuff = 'hi';
-// $_GLOBALS[$id] = $foodname;
-// echo $_POST[$id];
-// $foodfmt = json_encode($foodname);
-// echo $foodfmt;
-// $_POST["calories"] = $calories;
-// $_POST[$id]["foodname"] = $foodname;
-
-// <script>
-// var food = '. $foodfmt .';
-// </script>  
-
 function addFood($username, $food_name, $size, $calories, $description){
     $conn = OpenConn();
     $query = "INSERT INTO foods (username, food_name, size, calories, descriptiom) VALUES ('".$username."','".$food_name."', '".$size."', '".$calories."', '".$description."')";
@@ -209,5 +190,52 @@ function deleteFood($username, $id){
 
     return $result;
 }
+
+function addExercise($username, $exercise, $duration, $calories, $description){
+    $conn = OpenConn();
+    $query = "INSERT INTO exercises (username, exercise, duration, calories, description) VALUES ('".$username."','".$exercise."', '".$duration."', '".$calories."', '".$description."')";
+    $result = $conn->query($query);
+
+    return $result;
+}
+
+function getExerciseDictionary($username){
+    $conn = OpenConn();
+    $query = "SELECT * FROM exercises WHERE username = '".$username."'";
+    $result = $conn->query($query);
+
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $id = $row["id"];
+            $exercise =  $row["exercise"];
+            $duration =  $row["duration"];
+            $calories =  $row["calories"];
+            $descr =  $row["description"];
+
+
+                echo '
+                <tr id="'.$exercise.'">
+                <form class="table1" name="frmExDict" method="post" action="">
+                <td><div contenteditable>'.$id.'</div></td>
+                <td >'.$exercise.'</td> 
+                <td>'.$duration.'</td> 
+                <td>'.$descr.'</td> 
+                <td><input class="apply-btn" type="submit" name="apply-exercise" value="'.$calories.'">Apply Today</input></td> 
+                <td><input class="apply-btn" type="submit" name="delete-exercise" value="'.$id.'">Delete</input></td> 
+                </form>
+                </tr>'
+               ;
+        }
+    }
+}
+
+function deleteExercise($username, $id){
+    $conn = OpenConn();
+    $query = "DELETE FROM exercises WHERE username = '".$username."' AND id = '".$id."'";
+    $result = $conn->query($query);
+
+    return $result;
+}
+
 
 ?>

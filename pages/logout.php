@@ -1,5 +1,5 @@
 <?php
-include "validate.php";
+include "../actions/actions.php";
     if (! empty($_POST["logout-user"])) {
         session_start();
             $_SESSION['loggedin'] = false;
@@ -13,16 +13,15 @@ include "validate.php";
 
 <html>
     <head>
-    <link rel="stylesheet" type="text/css" href="./css/style.css" />
-    <link href="./css/register.css" rel="stylesheet" type="text/css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link href="../css/register.css" rel="stylesheet" type="text/css" />
     </head>
 <body style="background-image: url('../img/veggies.jpg');
     background-repeat: no-repeat;
     background-size: 100% ;">
     
     <!-- BEGIN navabr.php INCLUDE -->
-    <?php include "./navbar.php"; ?>
+    <?php include "../common/navbar.php"; ?>
     <!-- END navbar.php INCLUDE -->
 
     <div class="header1" style="color: white; background-color: #adaeb3; text-align: center;">

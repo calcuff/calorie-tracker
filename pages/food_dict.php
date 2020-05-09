@@ -1,6 +1,5 @@
 <?php
-include "validate.php";
-// include "foodactions.php";
+include "../actions/actions.php";
 session_start();
 
 if (! empty($_SESSION['username']) && $_SESSION['loggedin']==true) {
@@ -61,15 +60,14 @@ if (! empty($_POST["delete-food"]) && ! empty($_SESSION['username']) && $_SESSIO
     }
 
     header("Location: food_dict.php");
-
 }
 ?>
 
 <html>
     <head>
-    <link rel="stylesheet" type="text/css" href="./css/style.css" />
-    <link href="./css/register.css" rel="stylesheet" type="text/css" />
-    <link href="./css/popup.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link href="../css/register.css" rel="stylesheet" type="text/css" />
+    <link href="../css/popup.css" rel="stylesheet" type="text/css" />
 
     <script type="text/javascript">
         window.onload = function(){
@@ -93,14 +91,12 @@ if (! empty($_POST["delete-food"]) && ! empty($_SESSION['username']) && $_SESSIO
     background-position: 0% 0%;">
 
     <!-- BEGIN navabr.php INCLUDE -->
-    <?php include "./navbar.php"; ?>
+    <?php include "../common/navbar.php"; ?>
    
     <div class="title" style="border-style: groove; background-color:white; opacity:0.8;">
     <!-- BEGIN navbar.php INCLUDE -->
-    <?php include "./dailyheader.php"; ?>
+    <?php include "../common/dailyheader.php"; ?>
     </div>
-   
-
     
     <div class="title" style="background-color:white; opacity:0.6; color: blue; width: 200px" >
     <h2 >My Foods</h2></div>
@@ -163,35 +159,35 @@ if (! empty($_POST["delete-food"]) && ! empty($_SESSION['username']) && $_SESSIO
     </table>
     <br><br/><br><br/>
 
-<script>
+    <script>
 
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
+    function openForm() {
+    document.getElementById("myForm").style.display = "block";
+    }
 
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
+    function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+    }
 
-function search() {
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("searchInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("foodTable");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }       
-  }
-}
-</script>
+    function search() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("foodTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
+        }       
+    }
+    }
+    </script>
 
-    </body>
+</body>
 </html>    

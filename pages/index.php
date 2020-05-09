@@ -1,5 +1,5 @@
 <?php
-include "validate.php";
+include "../actions/actions.php";
 session_start();
 
 if (! empty($_SESSION['username']) && $_SESSION['loggedin']==true) {
@@ -62,10 +62,9 @@ if (! empty($_POST["exerciseadded"])  && ! empty($_SESSION['username']) && $_SES
 
 <html>
     <head>
-    <link rel="stylesheet" type="text/css" href="./css/style.css" />
-    <link href="./css/register.css" rel="stylesheet" type="text/css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link href="../css/register.css" rel="stylesheet" type="text/css" />
+   
     <script type="text/javascript">
         window.onload = function(){
             var cals = parseInt('<?php echo $goal_cals?>');
@@ -85,7 +84,7 @@ if (! empty($_POST["exerciseadded"])  && ! empty($_SESSION['username']) && $_SES
     background-repeat: no-repeat;
     background-size: 100% ;">
     <!-- BEGIN navbar.php INCLUDE -->
-    <?php include "./navbar.php"; ?>
+    <?php include "../common/navbar.php"; ?>
     <!-- END navbar.php INCLUDE -->
     
     <br><br/>
@@ -108,7 +107,7 @@ if (! empty($_POST["exerciseadded"])  && ! empty($_SESSION['username']) && $_SES
     ?>
     </h2>
         <!--- BEGIN dailyheader.php -->
-      <?php include "./dailyheader.php"; ?>
+      <?php include "../common/dailyheader.php"; ?>
     </div>
 
     <br><br/>

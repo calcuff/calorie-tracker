@@ -212,7 +212,6 @@ function getExerciseDictionary($username){
             $calories =  $row["calories"];
             $descr =  $row["description"];
 
-
                 echo '
                 <tr id="'.$exercise.'">
                 <form class="table1" name="frmExDict" method="post" action="">
@@ -234,6 +233,24 @@ function deleteExercise($username, $id){
     $query = "DELETE FROM exercises WHERE username = '".$username."' AND id = '".$id."'";
     $result = $conn->query($query);
 
+    return $result;
+}
+
+function getGoals($username){
+    $conn = OpenConn();
+    $query = "SELECT * FROM goals WHERE username = '".$username."'";
+    $result = $conn->query($query);
+
+    return $result;
+
+}
+
+function editGoals($username, $currentweight, $goalweight, $activitylevel, $dailycalories){
+    $conn = OpenConn();
+    $query = "UPDATE goals set goal_calories = '".$dailycalories."', goal_weight = '".$goalweight."', current_weight = '".$currentweight."', 
+    activity_level = '".$activitylevel."' WHERE username = '".$username."'";
+    
+    $result = $conn->query($query);
     return $result;
 }
 

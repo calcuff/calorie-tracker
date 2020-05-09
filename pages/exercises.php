@@ -1,5 +1,5 @@
 <?php
-include "validate.php";
+include "../actions/actions.php";
 session_start();
 
 if (! empty($_SESSION['username']) && $_SESSION['loggedin']==true) {
@@ -62,9 +62,9 @@ if (! empty($_POST["delete-exercise"]) && ! empty($_SESSION['username']) && $_SE
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="./css/style.css" />
-    <link href="./css/register.css" rel="stylesheet" type="text/css" />
-    <link href="./css/popup.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link href="../css/register.css" rel="stylesheet" type="text/css" />
+    <link href="../css/popup.css" rel="stylesheet" type="text/css" />
 
     <script type="text/javascript">
         window.onload = function(){
@@ -84,12 +84,12 @@ if (! empty($_POST["delete-exercise"]) && ! empty($_SESSION['username']) && $_SE
     background-repeat: no-repeat;
     background-size: cover ;">
     <!-- BEGIN navbar.php INCLUDE -->
-    <?php include "./navbar.php"; ?>
+    <?php include "../common/navbar.php"; ?>
     <!-- END navbar.php INCLUDE -->
     
     <div class="title" style="border-style: groove; background-color:white; opacity:0.8;">
     <!-- BEGIN navbar.php INCLUDE -->
-    <?php include "./dailyheader.php"; ?>
+    <?php include "../common/dailyheader.php"; ?>
     </div>
 
     <div class="title" style="background-color:white; opacity:0.6; color: blue; width: 200px" >

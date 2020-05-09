@@ -82,7 +82,7 @@ if (! empty($_POST["exerciseadded"])  && ! empty($_SESSION['username']) && $_SES
     </head>
 <body style="background-image: url('../img/veggies.jpg');
     background-repeat: no-repeat;
-    background-size: 100% ;">
+    background-size: cover ;">
     <!-- BEGIN navbar.php INCLUDE -->
     <?php include "../common/navbar.php"; ?>
     <!-- END navbar.php INCLUDE -->

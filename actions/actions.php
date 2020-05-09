@@ -56,6 +56,14 @@ function insertUser($username, $displayName, $password, $email){
     return $result;
 }
 
+function initGoals($username){
+    $conn = OpenConn();
+    $query = "INSERT INTO goals (username, goal_calories) VALUES ('".$username."', 2000)";
+    $result = $conn->query($query);
+
+    return $result;
+}
+
 function isGoodCredentials($username, $password){
     $conn = OpenConn();
     $query = "SELECT * FROM Users WHERE username = '".$username."' AND password = '".$password."'";

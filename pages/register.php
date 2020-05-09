@@ -5,24 +5,23 @@ if (! empty($_POST["register-user"])) {
     $displayName = ($_POST["firstName"]);
     $password = ($_POST["password"]);
     $email = ($_POST["userEmail"]);
-    echo $username;
-    echo $displayName;
-    echo $password;
-    echo $email;
 
     $errorMessage = validateMember($username, $displayName, $password, $email);
 
     if (empty($errorMessage)) {
         $memberCount = ifMemberExists($username, $email);
-        echo $memberCount;
-
         if ($memberCount == 0) {
             $retval = insertUser($username, $displayName, $password, $email);
             if(! empty($retval)){
+
+                $retval = initGoals($username);
+                if(! empty($retval)){
+
                 session_start();
                 $_SESSION['loggedin'] = true;
                 $_SESSION['username'] = $username;
-                header("Location: index.php"); 
+                header("Location: index.php");
+                } 
             }
         }
         else{
